@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Facebook Login JavaScript Example</title>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+    <a href="http://localhost:3002/auth/google">login</a>
+    <button id="ajax">ajax요청</button>
+    <button id="logout">로그아웃</button>   
+    <button id="imgdown">이미지 다운로드</button>
+    <div id="result"></div>
+
+    <script>
+        $(function () {
+            $("#ajax").on("click", getData);
+            $("#logout").on("click", logout);
+            $("#imgdown").on("click",imgDown);
+        });
+        function imgDown(){
+            $.post("http://localhost:3002/api/file/download");
+        }
+
+
+        function sendPost(url, params) {
+            var form = document.createElement('form');
+            form.setAttribute('method', 'post'); //POST 메서드 적용
+            form.setAttribute('action', url);	// 데이터를 전송할 url
+            document.charset = "utf-8";
+            for ( var key in params) {	// key, value로 이루어진 객체 params
+                var hiddenField = document.createElement('input');
+                hiddenField.setAttribute('type', 'hidden'); //값 입력
+                hiddenField.setAttribute('name', key);
+                hiddenField.setAttribute('value', params[key]);
+                form.appendChild(hiddenField);
+            }
+            document.body.appendChild(form);
+            form.submit();	// 전송~
+}
+        function getData() {
+            $.ajax({
+                type: "get", //전송타입 
+                url: "/user_info", //서버요청대상파일 
+                dataType: "json", //응답타입
+                
+                success: function (data, status, xhr) {
+                    $("#result").text(`id : ${data.user_info.id}
+                    email : ${data.user_info.email}
+                    displayName : ${data.user_info.display_name}
+                    google_id : ${data.user_info.google_id}
+                    `);
+                    console.log(data.user_info);
+
+                },
+                error: function (xhr, status, e) {
+                    console.log("error", e);
+                    console.log("status", status);
+                }
+            });
+        }
+
+        function logout() {
+
+            $.get("http://localhost:3002/logout");
+
+
+        }
+
+        function move() {
+            $(location).attr("href", "https://mail.google.com/mail/u/0/?logout&hl=en");
+            setTimeout(back2(),3000);
+           
+        }
+        function back2(){
+            $(location).attr("href", "http://localhost:3002");
+        }
+    </script>
+</body>
+
+</html>

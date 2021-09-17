@@ -1,0 +1,56 @@
+/* reset */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* fonts */
+@font-face {
+  font-family: "Barlow";
+  src: url(./assets/fonts/Barlow-Thin.ttf);
+  font-style: normal;
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url(./assets/fonts/Barlow-Light.ttf);
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url(./assets/fonts/Barlow-Regular.ttf);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.App {
+  min-width: 400px;
+}
+.warningMessage {
+  font-size: 0.8rem;
+  color: crimson;
+}
+
+.registerForm label {
+  margin-top: 10px;
+}

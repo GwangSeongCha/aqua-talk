@@ -1,0 +1,9 @@
+폴더 설명
+
+config 환경설정 
+lib -> passport 및 로그인과 관련된 라우터들 들어가있음
+models=>mysql 관련 
+model => 몽고db 추후에 삭제예정
+sessions=> 세션생겼을경우 파일로저장하는곳
+uploads =>파일 업로드 할때 저장하는 공간
+views=> express의 기본 프론트
